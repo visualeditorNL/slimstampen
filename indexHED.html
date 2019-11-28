@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+    <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+       More info: h5bp.com/b/378 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Woorden Leren</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+
+    <!-- CSS: implied media=all -->
+    <!-- CSS concatenated and minified via ant build script-->
+    <link rel="stylesheet" href="style.css">
+    <!-- end CSS-->
+    <script type="text/javascript">
+        // set some globals
+        // var ABSURL = 'http://slimstampen.nl/slst';
+
+    // GESA: Variables defining the session:
+    // ^FS: changed to 20 minutes:
+    var numMinutesPerSession = 1;
+
+    var useBlock = 3;  // ^FS: 3 = complete set 
+
+    var autoComp = 0;  // Autocomplete?
+    var levDist = 0;   // What levenshtein distance should be considered correct?
+        
+    // ^FS: Swahili - Dutch (hints will be ignored.)
+    var itemlist = {"items":[
+  {
+    "id": "1",
+    "itemText": "1 x 1 =",
+    "answer": "1",
+    "hint": "_"
+  },
+  {
+    "id": "2",
+    "itemText": "2 x 1 =",
+    "answer": "2",
+    "hint": "_"
+  },
+  {
+    "id": "3",
+    "itemText": "3 x 1 =",
+    "answer": "3",
+    "hint": "_"
+  },
+  {
+    "id": "4",
+    "itemText": "4 x 1 =",
+    "answer": "4",
+    "hint": "_"
+  },
+  {
+    "id": "5",
+    "itemText": "5 x 1 =",
+    "answer": "5",
+    "hint": "_"
+  },
+  {
+    "id": "6",
+    "itemText": "6 x 1 =",
+    "answer": "6",
+    "hint": "_"
+  },
+  {
+    "id": "7",
+    "itemText": "7 x 1 =",
+    "answer": "7",
+    "hint": "_"
+  },
+  {
+    "id": "8",
+    "itemText": "8 x 1 =",
+    "answer": "8",
+    "hint": "_"
+  },
+  {
+    "id": "9",
+    "itemText": "9 x 1 =",
+    "answer": "9",
+    "hint": "_"
+  },
+  {
+    "id": "10",
+    "itemText": "10 x 1 =",
+    "answer": "10",
+    "hint": "_"
+  },
+  {
+    "id": "11",
+    "itemText": "1 x 2 =",
+    "answer": "2",
+    "hint": "_"
+  },
+  {
+    "id": "12",
+    "itemText": "2 x 2 =",
+    "answer": "4",
+    "hint": "_"
+  },
+  {
+    "id": "13",
+    "itemText": "3 x 2 =",
+    "answer": "6",
+    "hint": "_"
+  },
+  {
+    "id": "14",
+    "itemText": "4 x 2 =",
+    "answer": "8",
+    "hint": "_"
+  },
+  {
+    "id": "15",
+    "itemText": "5 x 2 =",
+    "answer": "10",
+    "hint": "_"
+  },
+  {
+    "id": "16",
+    "itemText": "6 x 2 =",
+    "answer": "12",
+    "hint": "_"
+  },
+  {
+    "id": "17",
+    "itemText": "7 x 2 =",
+    "answer": "14",
+    "hint": "_"
+  },
+  {
+    "id": "18",
+    "itemText": "8 x 2 =",
+    "answer": "16",
+    "hint": "_"
+  },
+  {
+    "id": "19",
+    "itemText": "9 x 2 =",
+    "answer": "18",
+    "hint": "_"
+  },
+  {
+    "id": "20",
+    "itemText": "10 x 2 =",
+    "answer": "20",
+    "hint": "_"
+  },
+  {
+    "id": "21",
+    "itemText": "1 x 3 =",
+    "answer": "3",
+    "hint": "_"
+  },
+  {
+    "id": "22",
+    "itemText": "2 x 3 =",
+    "answer": "6",
+    "hint": "_"
+  },
+  {
+    "id": "23",
+    "itemText": "3 x 3 =",
+    "answer": "9",
+    "hint": "_"
+  },
+  {
+    "id": "24",
+    "itemText": "4 x 3 =",
+    "answer": "12",
+    "hint": "_"
+  },
+  {
+    "id": "25",
+    "itemText": "5 x 3 =",
+    "answer": "15",
+    "hint": "_"
+  },
+  {
+    "id": "26",
+    "itemText": "6 x 3 =",
+    "answer": "18",
+    "hint": "_"
+  },
+  {
+    "id": "27",
+    "itemText": "7 x 3 =",
+    "answer": "21",
+    "hint": "_"
+  },
+  {
+    "id": "28",
+    "itemText": "8 x 3 =",
+    "answer": "24",
+    "hint": "_"
+  },
+  {
+    "id": "29",
+    "itemText": "9 x 3 =",
+    "answer": "27",
+    "hint": "_"
+  },
+  {
+    "id": "30",
+    "itemText": "10 x 3 =",
+    "answer": "30",
+    "hint": "_"
+  },
+  {
+    "id": "31",
+    "itemText": "1 x 4 =",
+    "answer": "4",
+    "hint": "_"
+  },
+  {
+    "id": "32",
+    "itemText": "2 x 4 =",
+    "answer": "8",
+    "hint": "_"
+  },
+  {
+    "id": "33",
+    "itemText": "3 x 4 =",
+    "answer": "12",
+    "hint": "_"
+  },
+  {
+    "id": "34",
+    "itemText": "4 x 4 =",
+    "answer": "16",
+    "hint": "_"
+  },
+  {
+    "id": "35",
+    "itemText": "5 x 4 =",
+    "answer": "20",
+    "hint": "_"
+  },
+  {
+    "id": "36",
+    "itemText": "6 x 4 =",
+    "answer": "24",
+    "hint": "_"
+  },
+  {
+    "id": "37",
+    "itemText": "7 x 4 =",
+    "answer": "28",
+    "hint": "_"
+  },
+  {
+    "id": "38",
+    "itemText": "8 x 4 =",
+    "answer": "32",
+    "hint": "_"
+  },
+  {
+    "id": "39",
+    "itemText": "9 x 4 =",
+    "answer": "36",
+    "hint": "_"
+  },
+  {
+    "id": "40",
+    "itemText": "10 x 4 =",
+    "answer": "40",
+    "hint": "_"
+  },
+  {
+    "id": "41",
+    "itemText": "1 x 5 =",
+    "answer": "5",
+    "hint": "_"
+  },
+  {
+    "id": "42",
+    "itemText": "2 x 5 =",
+    "answer": "10",
+    "hint": "_"
+  },
+  {
+    "id": "43",
+    "itemText": "3 x 5 =",
+    "answer": "15",
+    "hint": "_"
+  },
+  {
+    "id": "44",
+    "itemText": "4 x 5 =",
+    "answer": "20",
+    "hint": "_"
+  },
+  {
+    "id": "45",
+    "itemText": "5 x 5 =",
+    "answer": "25",
+    "hint": "_"
+  },
+  {
+    "id": "46",
+    "itemText": "6 x 5 =",
+    "answer": "30",
+    "hint": "_"
+  },
+  {
+    "id": "47",
+    "itemText": "7 x 5 =",
+    "answer": "35",
+    "hint": "_"
+  },
+  {
+    "id": "48",
+    "itemText": "8 x 5 =",
+    "answer": "40",
+    "hint": "_"
+  },
+  {
+    "id": "49",
+    "itemText": "9 x 5 =",
+    "answer": "45",
+    "hint": "_"
+  },
+  {
+    "id": "50",
+    "itemText": "10 x 5 =",
+    "answer": "50",
+    "hint": "_"
+  },
+  {
+    "id": "51",
+    "itemText": "1 x 6 =",
+    "answer": "6",
+    "hint": "_"
+  },
+  {
+    "id": "52",
+    "itemText": "2 x 6 =",
+    "answer": "12",
+    "hint": "_"
+  },
+  {
+    "id": "53",
+    "itemText": "3 x 6 =",
+    "answer": "18",
+    "hint": "_"
+  },
+  {
+    "id": "54",
+    "itemText": "4 x 6 =",
+    "answer": "24",
+    "hint": "_"
+  },
+  {
+    "id": "55",
+    "itemText": "5 x 6 =",
+    "answer": "30",
+    "hint": "_"
+  },
+  {
+    "id": "56",
+    "itemText": "6 x 6 =",
+    "answer": "36",
+    "hint": "_"
+  },
+  {
+    "id": "57",
+    "itemText": "7 x 6 =",
+    "answer": "42",
+    "hint": "_"
+  },
+  {
+    "id": "58",
+    "itemText": "8 x 6 =",
+    "answer": "48",
+    "hint": "_"
+  },
+  {
+    "id": "59",
+    "itemText": "9 x 6 =",
+    "answer": "54",
+    "hint": "_"
+  },
+  {
+    "id": "60",
+    "itemText": "10 x 6 =",
+    "answer": "60",
+    "hint": "_"
+  },
+  {
+    "id": "61",
+    "itemText": "1 x 7 =",
+    "answer": "7",
+    "hint": "_"
+  },
+  {
+    "id": "62",
+    "itemText": "2 x 7 =",
+    "answer": "14",
+    "hint": "_"
+  },
+  {
+    "id": "63",
+    "itemText": "3 x 7 =",
+    "answer": "21",
+    "hint": "_"
+  },
+  {
+    "id": "64",
+    "itemText": "4 x 7 =",
+    "answer": "28",
+    "hint": "_"
+  },
+  {
+    "id": "65",
+    "itemText": "5 x 7 =",
+    "answer": "35",
+    "hint": "_"
+  },
+  {
+    "id": "66",
+    "itemText": "6 x 7 =",
+    "answer": "42",
+    "hint": "_"
+  },
+  {
+    "id": "67",
+    "itemText": "7 x 7 =",
+    "answer": "49",
+    "hint": "_"
+  },
+  {
+    "id": "68",
+    "itemText": "8 x 7 =",
+    "answer": "56",
+    "hint": "_"
+  },
+  {
+    "id": "69",
+    "itemText": "9 x 7 =",
+    "answer": "63",
+    "hint": "_"
+  },
+  {
+    "id": "70",
+    "itemText": "10 x 7 =",
+    "answer": "70",
+    "hint": "_"
+  },
+  {
+    "id": "71",
+    "itemText": "1 x 8 =",
+    "answer": "8",
+    "hint": "_"
+  },
+  {
+    "id": "72",
+    "itemText": "2 x 8 =",
+    "answer": "16",
+    "hint": "_"
+  },
+  {
+    "id": "73",
+    "itemText": "3 x 8 =",
+    "answer": "24",
+    "hint": "_"
+  },
+  {
+    "id": "74",
+    "itemText": "4 x 8 =",
+    "answer": "32",
+    "hint": "_"
+  },
+  {
+    "id": "75",
+    "itemText": "5 x 8 =",
+    "answer": "40",
+    "hint": "_"
+  },
+  {
+    "id": "76",
+    "itemText": "6 x 8 =",
+    "answer": "48",
+    "hint": "_"
+  },
+  {
+    "id": "77",
+    "itemText": "7 x 8 =",
+    "answer": "56",
+    "hint": "_"
+  },
+  {
+    "id": "78",
+    "itemText": "8 x 8 =",
+    "answer": "64",
+    "hint": "_"
+  },
+  {
+    "id": "79",
+    "itemText": "9 x 8 =",
+    "answer": "72",
+    "hint": "_"
+  },
+  {
+    "id": "80",
+    "itemText": "10 x 8 =",
+    "answer": "80",
+    "hint": "_"
+  },
+  {
+    "id": "81",
+    "itemText": "1 x 9 =",
+    "answer": "9",
+    "hint": "_"
+  },
+  {
+    "id": "82",
+    "itemText": "2 x 9 =",
+    "answer": "18",
+    "hint": "_"
+  },
+  {
+    "id": "83",
+    "itemText": "3 x 9 =",
+    "answer": "27",
+    "hint": "_"
+  },
+  {
+    "id": "84",
+    "itemText": "4 x 9 =",
+    "answer": "36",
+    "hint": "_"
+  },
+  {
+    "id": "85",
+    "itemText": "5 x 9 =",
+    "answer": "45",
+    "hint": "_"
+  },
+  {
+    "id": "86",
+    "itemText": "6 x 9 =",
+    "answer": "54",
+    "hint": "_"
+  },
+  {
+    "id": "87",
+    "itemText": "7 x 9 =",
+    "answer": "63",
+    "hint": "_"
+  },
+  {
+    "id": "88",
+    "itemText": "8 x 9 =",
+    "answer": "72",
+    "hint": "_"
+  },
+  {
+    "id": "89",
+    "itemText": "9 x 9 =",
+    "answer": "81",
+    "hint": "_"
+  },
+  {
+    "id": "90",
+    "itemText": "10 x 9 =",
+    "answer": "90",
+    "hint": "_"
+  },
+  {
+    "id": "91",
+    "itemText": "1 x 10 =",
+    "answer": "10",
+    "hint": "_"
+  },
+  {
+    "id": "92",
+    "itemText": "2 x 10 =",
+    "answer": "20",
+    "hint": "_"
+  },
+  {
+    "id": "93",
+    "itemText": "3 x 10 =",
+    "answer": "30",
+    "hint": "_"
+  },
+  {
+    "id": "94",
+    "itemText": "4 x 10 =",
+    "answer": "40",
+    "hint": "_"
+  },
+  {
+    "id": "95",
+    "itemText": "5 x 10 =",
+    "answer": "50",
+    "hint": "_"
+  },
+  {
+    "id": "96",
+    "itemText": "6 x 10 =",
+    "answer": "60",
+    "hint": "_"
+  },
+  {
+    "id": "97",
+    "itemText": "7 x 10 =",
+    "answer": "70",
+    "hint": "_"
+  },
+  {
+    "id": "98",
+    "itemText": "8 x 10 =",
+    "answer": "80",
+    "hint": "_"
+  },
+  {
+    "id": "99",
+    "itemText": "9 x 10 =",
+    "answer": "90",
+    "hint": "_"
+  },
+  {
+    "id": "100",
+    "itemText": "10 x 10 =",
+    "answer": "100",
+    "hint": "_"
+  }
+],
+    "itemData":[]};
+
+    // ^FS: Swahili - Dutch (hints will be ignored.)
+    var itemlistFullList = {"items":[
+            {"id":"1","itemText":"1","answer":"1","hint":"_"},
+            {"id":"2","itemText":"2","answer":"2","hint":"_"},
+            {"id":"3","itemText":"3","answer":"3","hint":"_"},
+            {"id":"4","itemText":"4","answer":"4","hint":"_"},
+            {"id":"5","itemText":"5","answer":"5","hint":"_"},
+            {"id":"6","itemText":"6","answer":"6","hint":"_"},
+            {"id":"7","itemText":"7","answer":"7","hint":"_"},
+            {"id":"8","itemText":"8","answer":"8","hint":"_"},
+            {"id":"9","itemText":"9","answer":"9","hint":"_"},
+            {"id":"10","itemText":"10","answer":"10","hint":"_"},
+            {"id":"11","itemText":"11","answer":"11","hint":"_"},
+            {"id":"12","itemText":"12","answer":"12","hint":"_"},
+            {"id":"13","itemText":"pipa","answer":"vat","hint":"_"},
+            {"id":"14","itemText":"pazia","answer":"gordijn","hint":"_"},
+            {"id":"15","itemText":"tumbili","answer":"aap","hint":"_"},
+            {"id":"16","itemText":"wasaa","answer":"ruim","hint":"_"},
+            {"id":"17","itemText":"rafiki","answer":"vriend","hint":"_"},
+            {"id":"18","itemText":"kaputula","answer":"shorts","hint":"_"},
+            {"id":"19","itemText":"punda","answer":"ezel","hint":"_"},
+            {"id":"20","itemText":"ziwa","answer":"meer","hint":"_"},
+            {"id":"21","itemText":"zeituni","answer":"olijf","hint":"_"},
+            {"id":"22","itemText":"adui","answer":"vijand","hint":"_"},
+            {"id":"23","itemText":"dafine","answer":"schat","hint":"_"},
+            {"id":"24","itemText":"nabii","answer":"profeet","hint":"_"},
+            {"id":"25","itemText":"pamba","answer":"katoen","hint":"_"},
+            {"id":"26","itemText":"baharia","answer":"zeeman","hint":"_"},
+            {"id":"27","itemText":"jani","answer":"blad","hint":"_"},
+            {"id":"28","itemText":"lozi","answer":"amandel","hint":"_"},
+            {"id":"29","itemText":"wakili","answer":"agent","hint":"_"},
+            {"id":"30","itemText":"bahasha","answer":"envelop","hint":"_"},
+            {"id":"31","itemText":"fumbo","answer":"mysterie","hint":"_"},
+            {"id":"32","itemText":"vumbi","answer":"stof","hint":"_"},
+            {"id":"33","itemText":"bandari","answer":"haven","hint":"_"},
+            {"id":"34","itemText":"inda","answer":"wrok","hint":"_"},
+            {"id":"35","itemText":"lango","answer":"poort","hint":"_"},
+            {"id":"36","itemText":"paji","answer":"voorhoofd","hint":"_"},
+            {"id":"37","itemText":"desturi","answer":"gewoonte","hint":"_"},
+            {"id":"38","itemText":"handaki","answer":"greppel","hint":"_"},
+            {"id":"39","itemText":"mfupa","answer":"bot","hint":"_"},
+            {"id":"40","itemText":"sanda","answer":"sluier","hint":"_"},
+            {"id":"41","itemText":"adha","answer":"probleem","hint":"_"},
+            {"id":"42","itemText":"kasuku","answer":"papegaai","hint":"_"},
+            {"id":"43","itemText":"tajiri","answer":"koopman","hint":"_"},
+            {"id":"44","itemText":"yamini","answer":"eed","hint":"_"},
+            {"id":"45","itemText":"chimbo","answer":"prooi","hint":"_"},
+            {"id":"46","itemText":"gutu","answer":"stomp","hint":"_"},
+            {"id":"47","itemText":"kamba","answer":"touw","hint":"_"},
+            {"id":"48","itemText":"nafaka","answer":"korrel","hint":"_"},
+            {"id":"49","itemText":"mshoni","answer":"kleermaker","hint":"_"},
+            {"id":"50","itemText":"ladha","answer":"smaak","hint":"_"},
+        ],
+    "itemData":[]};
+
+    // GESA-END
+
+    </script>
+<style type="text/css"></style></head>
+<body>
+
+<script>
+	/*
+    var TXT_SESSION_DONE = 'Deze oefenronde is afgesloten';
+    var TXT_RETURN_TO_OVERVIEW = 'Ga door met het experiment!';
+    var TXT_ANSWER_WAS = 'De vertaling is';
+    var TXT_ANSWER_WAS1 = 'De vertaling van';;
+    var TXT_ANSWER_WAS2 = 'is';
+    var TXT_SCORE_IS = 'Jouw score is';
+    var TXT_ITEMS_SEEN = 'woorden gezien';
+    var TXT_ERROR_ITEM_LOAD = 'The items of the list(s) could not be loaded. Try to refresh the page.';
+    var TXT_ERROR_MODEL_LOAD = 'The study model could not be loaded. Try to refresh the page.';
+    var TXT_LOADING_SESSION = 'Loading...';
+    var TXT_START_STUDYING = '';
+    var TXT_CORRECT = 'Correct!';
+    var TXT_INCORRECT = 'Klopt niet!';
+    var TXT_ALMOST_CORRECT = 'Bijna goed!';
+    var TXT_TRYAGAIN = 'Probeer het nog een keer!';
+    var TXT_ITEMS_LOADED = 'Items geladen...';
+    */
+    
+    // ^FS: translated text to English:
+    var TXT_SESSION_DONE = 'Ga door met het experiment!';
+    var TXT_RETURN_TO_OVERVIEW = 'Continue with the experiment!';
+    var TXT_ANSWER_WAS = 'Het antwoord is';
+    var TXT_ANSWER_WAS1 = 'Het antwoord is';;
+    var TXT_ANSWER_WAS2 = 'is';
+    var TXT_SCORE_IS = 'Jouw score is';
+    var TXT_ITEMS_SEEN = 'woorden gezien';
+    var TXT_ERROR_ITEM_LOAD = 'The items of the list(s) could not be loaded. Try to refresh the page.';
+    var TXT_ERROR_MODEL_LOAD = 'The study model could not be loaded. Try to refresh the page.';
+    var TXT_LOADING_SESSION = 'Loading...';
+    var TXT_START_STUDYING = '';
+    var TXT_CORRECT = 'Correct!';
+    var TXT_INCORRECT = 'Klopt niet!';
+    var TXT_ALMOST_CORRECT = 'Bijna goed!';
+    var TXT_TRYAGAIN = 'Probeer het nog een keer!';
+    var TXT_ITEMS_LOADED = 'Items geladen...';
+    var FINISH_LINK = 'https://ugroningenbss.qualtrics.com/SE/?SID=SV_82MALuYMyHdNDud';
+</script>
+
+<div id="study-session-container">
+    <div id="study-session-header">
+        <div id="study-session-info">
+            <span id="study-timer">00:00:00 / 00:00:00</span> 
+            <div id="study-session-results">No geen resultaten</div>
+        </div>
+    <div id="reduce-current-item-presentations">
+        <a href="#" id="reduce-item-presentations" class="study-link-button">Reduce Item Frequency</a>
+    </div>
+        <div style="clear: both;"></div>
+    </div>
+
+        <div id="events">
+        <div id="itemdisplay" style="">
+            <div id="feedback"></div>
+            <div id="feedback-message"></div>
+            <div id="item">
+               <div id="item-test" style="display: none;">
+                    <span id="test-text"></span>
+                </div>
+                <div id="item-study" style="display: none;">
+                    <label></label>
+
+                    <span id="study-text"></span>
+                    <br><br>
+                    <label></label>
+                    <span id="study-answer-text"></span>
+                </div>
+
+            </div>
+            <div id="message"></div>
+
+        </div>
+
+            <div id="explanation">
+				<p>
+				In de komende 10 minuten zul je aardrijkskundige begrippen leren.
+				</p>
+				<p>
+				De omschrijving van het begrip komt op het scherm. Als de omschrijving voor het eerst wordt getoond, zie je ook het bijbehorende begrip. Daarna zul je het begrip zelf moeten herinneren. In elke trial moet je het <strong>begrip</strong> intypen en op Enter drukken.
+				</p>
+				<p></p>
+				<p>
+				Onderaan het scherm zie je een samenvatting van je prestaties.
+				</p><p>
+				Klik op de knop "Start het leren" om de sessie te beginnen.
+				</p>   
+				<p>&nbsp;</p>                                   
+                                                
+            </div>
+            
+            <div id="input-area">
+             <form action="" id="start-study">
+                <input type="submit" class="button" name="start" value="Start het leren" id="study-session-start">
+            </form>
+
+            <form action="" id="response">
+
+                <label></label><br>
+                <input type="text" name="response" id="responsebox">
+                <div class="complete" id="autocomplete" style="display: none;">
+                    <p>test</p></div>
+            </form>
+
+                <!-- <form id="difficulty" style="display: none">
+                    <p>
+                        <strong>Hoe moeilijk was deze vraag?</strong>
+                    </p>
+                    <br>
+                    <p><i>Gebruik 'f' en 'j' om een optie te kiezen en druk op de spatiebalk om door te gaan.</i></p>
+                    <label for="difficulty1">Heel makkelijk</label>
+                    <input type="radio" name="difficultyRadio" id="difficulty1" value="1">
+                    <label for="difficulty2">Makkelijk</label>
+                    <input type="radio" name="difficultyRadio" id="difficulty2" value="2">
+                    <label for="difficulty3">Moeilijk</label>
+                    <input type="radio" name="difficultyRadio" id="difficulty3" value="3">
+                    <label for="difficulty4">Heel moeilijk</label>
+                    <input type="radio" name="difficultyRadio" id="difficulty4" value="4">
+                </form> -->
+        </div>
+       </div>
+    <div style="clear:both;"></div>
+</div>
+    <div style="clear: both;"></div>
+
+    <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+    <script src="./scripts/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="./scripts/jquery-1.6.2.min.js"><\/script>')</script>
+
+<script type="text/javascript" src="./scripts/modelbase.js"></script>
+<script type="text/javascript" src="./scripts/irsSpacing.js"></script>
+<!-- <script type="text/javascript" src="./scripts/classicFlashcard.js"></script> -->
+<script type="text/javascript">
+
+/*<![CDATA[*/
+$(document).ready(function() {
+	// xxx
+	console.log(itemlist.items[1]);
+	
+    var subjID = 0;
+
+    //TODO TOM: Re-enable when done editing
+     while (!(subjID > 0)) {
+         subjID = parseInt(window.prompt("Voer je leerlingennummer in:",""));
+     }
+
+    // We need this to write to the correct file on the server
+    PG.global.subjectID = subjID;
+
+    // We need this to write to the correct file on the server
+    PG.global.blockNumber = useBlock;
+    
+    // Set random seed based on participant number, so that we're
+    // going to automatically separate the participants over the
+    // counterbalanced orders.
+    PG.tools.seed = subjID;
+     
+    // Decide whether part2.html of part1.html met hints moet zijn
+    // gebaseerd op subjnr en welk block moet worden aangeboden (zodat
+    // eerste en tweede part/block/deel gecounterbalanced hints aanbieden.
+    // ^FS: Gebruik nooit hints:
+    useHints = 0; //(subjID + useBlock) % 2;
+    
+    itemlist.items = PG.tools.shuffleItems(itemlist.items); // shuffle item order 
+
+	console.log(itemlist.items[1]);
+
+	// Based on the SONA number being odd or even, we select either the SlimStampen algorithm or
+	// the flashcard algorithm to sequence the items
+	//if (subjID % 2 == 0) {
+	console.log("==> Spacing method");
+	    PG.global.init(PG.irsSpacing, itemlist, useBlock, autoComp, levDist, 1953, 1, numMinutesPerSession, 0, 0, false, useHints);    
+	//} else {
+	//	console.log("==> FlashCard method");
+	 //   PG.global.init(PG.classicFlashcard, itemlist, useBlock, autoComp, levDist, 1953, 1, numMinutesPerSession, 0, 0, false, useHints);    
+	//}	
+});
+/*]]>*/
+</script>
+
+
+</body></html>

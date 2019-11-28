@@ -1,0 +1,3 @@
+1,3,38,true,1702,"response":"32","time":"2.885","levdist":"0","presentation":"1",,study,flashcard,1,0,-1,-1,-1,-1,-1,-1
+1,3,34,true,1863,"response":"16","time":"6.151","levdist":"0","presentation":"1",,study,flashcard,2,0,-1,-1,-1,-1,-1,-1
+1,3,80,true,1492,"response":"80","time":"8.707","levdist":"0","presentation":"1",,study,flashcard,3,0,-1,-1,-1,-1,-1,-1

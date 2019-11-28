@@ -1,0 +1,74 @@
+{"items":[
+  {
+    "id": 1,
+    "itemText": "Gemiddelde temperatuur van de koudste maand is niet lager dan 18 °C en het regent het hele jaar.",
+    "itemDiagram": "../image/diagram/Diagram1.png",
+    "itemPhoto": "../image/photo/Photo1.jpg",
+    "answer": "Tropisch regenwoud (Af)",
+    "hint": "Als de gemiddelde temperatuur niet onder de 18 graden komt is er sprake van een A-klimaat. Als het dan ook nog het hele jaar regent wordt er een 'f' toegevoegd."
+  },
+  {
+    "id": 2,
+    "itemText": "Gemiddelde temperatuur van de koudste maand is niet lager dan 18 °C en in de winter is er sprake van een droge periode.",
+    "itemDiagram": "../image/diagram/Diagram2.png",
+    "itemPhoto": "../image/photo/Photo2.jpg",
+    "answer": "Savanne (Aw)",
+    "hint": "_"
+  },
+  {
+    "id": 3,
+    "itemText": "Jaarlijks valt er ongeveer tussen de 200 en 300 mm neerslag.",
+    "itemDiagram": "../image/diagram/Diagram3.png",
+    "itemPhoto": "../image/photo/Photo3.jpg",
+    "answer": "Steppe (BS)",
+    "hint": "_"
+  },
+  {
+    "id": 4,
+    "itemText": "Jaarlijks valt er ongeveer minder dan 200 mm neerslag",
+    "itemDiagram": "../image/diagram/Diagram4.png",
+    "itemPhoto": "../image/photo/Photo4.jpg",
+    "answer": "Woestijn (BW)",
+    "hint": "_"
+  },
+  {
+    "id": 5,
+    "itemText": "In de warmste maand ligt de temperatuur tussen de 0 °C en 10 °C.",
+    "itemDiagram": "../image/diagram/Diagram5.png",
+    "itemPhoto": "../image/photo/Photo5.jpg",
+    "answer": "Toendra (ET)",
+    "hint": "_"
+  },
+  {
+    "id": 6,
+    "itemText": "Het hele jaar door ligt de gemiddelde maandtemperatuur onder het vriespunt.",
+    "itemDiagram": "../image/diagram/Diagram6.png",
+    "itemPhoto": "../image/photo/Photo6.jpg",
+    "answer": "IJskap (EF)",
+    "hint": "_"
+  },
+  {
+    "id": 7,
+    "itemText": "De temperatuur is er altijd onder de 0°C, en het gebied ligt op lagere breedtes dan 70 graden.",
+    "itemDiagram": "../image/diagram/Diagram7.png",
+    "itemPhoto": "../image/photo/Photo7.jpg",
+    "answer": "Hooggebergte (EH)",
+    "hint": "_"
+  },
+  {
+    "id": 8,
+    "itemText": "Gemiddelde temperatuur van de koudste maand is niet lager dan -3 °C en niet hoger dan 18 °C, gemiddelde temperatuur van de warmste maand is hoger dan 10 °C",
+    "itemDiagram": "../image/diagram/Diagram8.png",
+    "itemPhoto": "../image/photo/Photo8.jpg",
+    "answer": "Maritiem klimaat (C)",
+    "hint": "_"
+  },
+  {
+    "id": 9,
+    "itemText": "Gemiddelde temperatuur van de koudste maand is lager dan -3 °C, gemiddelde temperatuur van de warmste maand is hoger dan 10 °C.",
+    "itemDiagram": "../image/diagram/Diagram9.png",
+    "itemPhoto": "../image/photo/Photo9.jpg",
+    "answer": "Continentaal klimaat (D)",
+    "hint": "_"
+  } 
+] }

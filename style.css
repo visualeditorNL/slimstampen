@@ -1,0 +1,280 @@
+@charset "utf-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+br {
+  display: none;
+}
+
+body {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px;
+    font-family: arial;
+    font-size: 14px;
+    line-height: 180%;
+    color: #000000;
+    scroll: no;
+}
+
+.content-block {
+	margin-top: 10px;
+    padding: 10px 10px 10px 30px;
+}
+
+.centered-content-block {
+    margin: 8px auto;
+    width: 65%;
+    text-align: justify;
+    /*border: 1px solid #949494;*/
+    padding: 5px;
+}
+
+form input[disabled] {
+    background-color: #dddddd;
+}
+
+/* Study session styling */
+
+div#events  {
+    height: 400px;
+    margin-top: 150px;
+}
+
+#study-session-info {
+    /*margin: 10px;*/
+}
+
+#stop-session {
+    color: black;
+}
+
+#reduce-current-item-presentations {
+    display: none;
+}
+
+#reduce-item-presentations {
+    /*color: black;*/
+    display: none;
+}
+
+#study-session-header {
+    position: absolute;
+	margin-top: 300px;
+	margin-left: 0px;
+	margin-right: 0;
+	width: 300px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+}
+
+#itemdisplay {
+    display: none;
+    min-height: 95px;
+}
+
+#item div {
+	margin-bottom: 16pt;
+    font-size: 16pt;
+}
+
+#item span {
+	margin-bottom: 16pt;
+    font-size: 16pt;
+}
+
+#item-test {
+    display: none;
+}
+
+#item-study {
+    display: none;
+}
+
+#item-study span {
+    display: block;
+}
+
+#input-area {
+  height: 50px;
+}
+
+#responsebox {
+    font-size: 16pt;
+}
+	
+#response {
+    display: none;
+}
+
+#feedback {
+	display: none;
+	height: 40px;
+}
+
+div #feedback {
+    font-size: 16pt;
+}
+
+div #feedback-message {
+    font-size: 16pt;
+}
+
+.feedback-correct {
+	color: green;
+}
+
+.feedback-incorrect {
+	color: red;
+}
+
+.feedback-almost-correct {
+	color: blue;
+}
+
+.feedback-almost {
+	color: blue;
+}
+.complete {
+	font-family: Arial, Helvetica;
+	font-size: 0.8em;
+	cursor: pointer;
+	padding: 2px;
+	/*position: absolute;*/
+    display: none;
+}
+
+#autocomplete {
+	border: 1px black solid;
+	background-color: #ffda80;
+}
+
+#autocomplete-selected {
+	border: 1px black solid;
+	font-weight: bold;
+	background-color: white;
+}
+
+
+
+#study-session-container {
+	background-color: #FFFFFF;
+	font-family: Arial, Helvetica;
+	font-size: 1em;
+	padding: 0px;
+	margin: 10px;
+    width: 500px;
+}
+
+
+input.buttoncss {
+	color:#FFF;
+	background:#000
+		no-repeat 100% 30%;
+	border: 0px;
+	padding:2px 6px 1px 6px;
+	margin-bottom:4px;
+	text-align:center;
+	cursor:pointer;
+	font-family:arial,sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+h3 {
+	color:#e60d12; 
+}
+
+.mainarea {
+	margin: 0px 0px 0px 0px;
+	padding: 5px 100px 15px 100px;
+	background: #f2f0f0;    
+	height: 250px;
+}
+
+#stimbox {
+    margin: 10px 10px 10px 10px;
+    padding: 15px 10px 15px 25px;
+    border: 0px;
+    visibility: hidden;
+
+    font-size: 24px;
+    font-family: Courier, monospace;
+    font-weight: bold;
+    line-height: 32px;
+
+    color: black;
+    width : 800px;
+    height: 100px;
+    position: absolute;
+    top: 50px;
+    visibility: hidden;
+    textAlign: center;
+}
+
+#answerBox {
+    margin: 10px 10px 10px 10px;
+    padding: 15px 10px 15px 25px;
+    border: 1px dotted darkgrey;
+    visibility: hidden;
+
+    font-size: 24px;
+    font-family: Courier, monospace;
+    font-weight: bold;
+    line-height: 32px;
+
+    color: black;
+    width : 800px;
+    height: 30px;
+    position: absolute;
+    top: 300px;
+    visibility: hidden;
+    textAlign: center;
+}
+
+#StartOfTrial{
+    border: 0px;
+    margin: 50px 50px 50px 50px;
+    padding: 15px 10px 15px 25px;
+    visibility: visible;
+
+    font-size: 24px;
+    font-family: Courier, monospace;
+    line-height: 32px;
+
+    color: 'black';
+    backgroundColor: 'white'; 
+    position: 'absolute';
+    width : 600;
+    left : 50;
+    height: 30;
+    top: 100;
+    textAlign: 'center';
+    visibility: 'visible';
+}
+
+
+#debugBox {
+    margin: 10px 10px 10px 10px;
+    border: 0px;
+    visibility: hidden;
+
+    fontSize: 12px;
+    fontFamily: 'Arial';
+    backgroundColor: 'transparant';
+
+    position: absolute;
+    top: 600px;
+    width: 500px;
+    left: 10px;
+    color: red;
+    textAlign: left;
+}
+
+:focus {
+    outline: none;
+}

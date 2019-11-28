@@ -1,0 +1,6 @@
+1,3,38,true,2093,"response":"32","time":"2.661","levdist":"0","presentation":"1",,study,flashcard,1,0,-1,-1,-1,-1,-1,-1
+1,3,34,true,1225,"response":"16","time":"5.156","levdist":"0","presentation":"1",,study,flashcard,2,0,-1,-1,-1,-1,-1,-1
+1,3,80,true,1326,"response":"80","time":"7.54","levdist":"0","presentation":"1",,study,flashcard,3,0,-1,-1,-1,-1,-1,-1
+1,3,1,true,1129,"response":"1","time":"9.441","levdist":"0","presentation":"1",,study,flashcard,4,0,-1,-1,-1,-1,-1,-1
+1,3,54,true,1217,"response":"24","time":"11.683","levdist":"0","presentation":"1",,study,flashcard,5,0,-1,-1,-1,-1,-1,-1
+1,3,38,true,1865,"response":"32","time":"14.608","levdist":"0","presentation":"2",,test,flashcard,6,0,-1,-1,-1,-1,-1,-1

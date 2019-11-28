@@ -1,0 +1,226 @@
+
+
+<!DOCTYPE html>
+
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="https://d3js.org/d3.v5.js"></script> -->
+<script type="text/javascript" src="./scripts/modelbase.js"></script>
+<script type="text/javascript" src="./scripts/irsSpacing.js"></script>
+<style type="text/css">
+#study-session-container {
+	margin: 25px 50px 75px 100px;
+}
+#itemDisplay {
+	height: 430px;
+	width: 640px;
+  font-size: 1.5em;
+  text-align: center;
+  font-family: "Verdana", Arial, sans-serif;
+	border: 1px solid;
+    border-radius: 5px;
+    background-color: lightgrey;
+ 
+}
+img {
+    max-width: 100%;
+    max-height: auto;
+
+}
+input[type=button] {
+    background-color: #4CAF50;
+    width: 315px;
+    border: none;
+    font-size: 16px;
+    display: inline-block;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    
+}
+input[type=button]:hover {
+    background-color: #3e8e41;
+}
+}
+</style>
+<body>
+	<div id="study-session-container">
+	<div id="itemDisplay">
+		<p>Hier komt een tekst, een klimaatdiagram of een foto...</p>
+	</div>
+	<div id="inputArea">
+		
+<input id="submitButton0" type="button" name="choice1" value="Tropisch regenwoud (Af)" onclick="submitAnswer()">
+<input id="submitButton1" type="button" name="choice2" value="Toendra (ET)" onclick="submitAnswer()"> <br>
+<input id="submitButton2" type="button" name="choice3" value="Steppe (BS)" onclick="submitAnswer()"> 
+<input id="submitButton3" type="button" name="choice4" value="Continentaal klimaat (D)" onclick="submitAnswer()"> 
+
+
+	</div>
+</div>
+<script type="text/javascript">
+
+var itemlist = {"items":[
+  {
+    "id": 1,
+    "itemText": "Gemiddelde temperatuur van de koudste maand is niet lager dan 18 &deg;C en het regent het hele jaar.",
+    "itemDiagram": "image/diagram/Diagram1.png",
+    "itemPhoto": "image/photo/Photo1.jpg",
+    "answer": "Tropisch regenwoud (Af)",
+    "hint": "Als de gemiddelde temperatuur niet onder de 18 graden komt is er sprake van een A-klimaat. Als het dan ook nog het hele jaar regent wordt er een 'f' toegevoegd."
+  },
+  {
+    "id": 2,
+    "itemText": "Gemiddelde temperatuur van de koudste maand is niet lager dan 18 &deg;C en in de winter is er sprake van een droge periode.",
+    "itemDiagram": "image/diagram/Diagram2.png",
+    "itemPhoto": "image/photo/Photo2.jpg",
+    "answer": "Savanne (Aw)",
+    "hint": "_"
+  },
+  {
+    "id": 3,
+    "itemText": "Jaarlijks valt er ongeveer tussen de 200 en 300 mm neerslag.",
+    "itemDiagram": "image/diagram/Diagram3.png",
+    "itemPhoto": "image/photo/Photo3.jpg",
+    "answer": "Steppe (BS)",
+    "hint": "_"
+  },
+  {
+    "id": 4,
+    "itemText": "Jaarlijks valt er ongeveer minder dan 200 mm neerslag",
+    "itemDiagram": "image/diagram/Diagram4.png",
+    "itemPhoto": "image/photo/Photo4.jpg",
+    "answer": "Woestijn (BW)",
+    "hint": "_"
+  },
+  {
+    "id": 5,
+    "itemText": "In de warmste maand ligt de temperatuur tussen de 0 &deg;C en 10 &deg;C.",
+    "itemDiagram": "image/diagram/Diagram5.png",
+    "itemPhoto": "image/photo/Photo5.jpg",
+    "answer": "Toendra (ET)",
+    "hint": "_"
+  },
+  {
+    "id": 6,
+    "itemText": "Het hele jaar door ligt de gemiddelde maandtemperatuur onder het vriespunt.",
+    "itemDiagram": "image/diagram/Diagram6.png",
+    "itemPhoto": "image/photo/Photo6.jpg",
+    "answer": "IJskap (EF)",
+    "hint": "_"
+  },
+  {
+    "id": 7,
+    "itemText": "De temperatuur is er altijd onder de 0&deg;C, en het gebied ligt op lagere breedtes dan 70 graden.",
+    "itemDiagram": "image/diagram/Diagram7.png",
+    "itemPhoto": "image/photo/Photo7.jpg",
+    "answer": "Hooggebergte (EH)",
+    "hint": "_"
+  },
+  {
+    "id": 8,
+    "itemText": "Gemiddelde temperatuur van de koudste maand is niet lager dan -3 &deg;C en niet hoger dan 18 &deg;C, gemiddelde temperatuur van de warmste maand is hoger dan 10 &deg;C",
+    "itemDiagram": "image/diagram/Diagram8.png",
+    "itemPhoto": "image/photo/Photo8.jpg",
+    "answer": "Maritiem klimaat (C)",
+    "hint": "_"
+  },
+  {
+    "id": 9,
+    "itemText": "Gemiddelde temperatuur van de koudste maand is lager dan -3 &deg;C, gemiddelde temperatuur van de warmste maand is hoger dan 10 &deg;C.",
+    "itemDiagram": "image/diagram/Diagram9.png",
+    "itemPhoto": "image/photo/Photo9.jpg",
+    "answer": "Continentaal klimaat (D)",
+    "hint": "_"
+  } 
+] };
+
+/*for (var i = 0; i < itemlist.items.length; i++) {
+    var obj = itemlist.items[i]
+    for (var key in obj) {
+        console.log(key+" = "+ obj[key]);
+    }   }*/
+
+  var questionAsked = Math.floor(Math.random() * itemlist.items.length);
+  
+  var possibleAnswers = []
+  for (i=0; i < itemlist.items.length; i++) {
+    possibleAnswers.push(itemlist.items[i].answer)
+  };
+
+  var randomAnswer = Math.floor(Math.random()*possibleAnswers.length);
+//console.log(possibleAnswers);
+//console.log(randomAnswer);
+//console.log(possibleAnswers[randomAnswer]);
+  document.getElementById('submitButton'+Math.floor(Math.random() * 4)).value = possibleAnswers[randomAnswer];
+
+
+
+  /*for (i=0; i < 4; i++){
+    var randomAnswer = Math.floor(Math.random()*possibleAnswers.length);
+     if (randomAnswer === questionAsked) {
+      continue;
+    }}*/
+
+    //document.getElementById('submitButton'+i).value = possibleAnswers[randomAnswer];
+    //possibleAnswers.splice(randomAnswer, 1);
+
+
+
+
+
+
+var picked = Math.floor((Math.random() * itemlist.items.length));
+
+console.log(picked+" "+itemlist.items[picked].itemDiagram);
+//document.write(itemlist.items[picked][2]);
+//document.getElementById("itemDisplay").innerHTML = itemlist.items[picked].itemDiagram;
+//document.getElementById("itemDisplay").innerHTML = itemlist.items[picked].itemPhoto;
+
+$(document).ready(function() {
+  // xxx
+  console.log(itemlist.items[1]);
+  
+    //var subjID = 0;
+
+    //TODO TOM: Re-enable when done editing
+    /* while (!(subjID > 0)) {
+         subjID = parseInt(window.prompt("Voer je leerlingennummer in:",""));
+     }*/
+
+    // We need this to write to the correct file on the server
+    //PG.global.subjectID = subjID;
+
+    // We need this to write to the correct file on the server
+    //PG.global.blockNumber = useBlock;
+    
+    // Set random seed based on participant number, so that we're
+    // going to automatically separate the participants over the
+    // counterbalanced orders.
+    //PG.tools.seed = subjID;
+     
+    // Decide whether part2.html of part1.html met hints moet zijn
+    // gebaseerd op subjnr en welk block moet worden aangeboden (zodat
+    // eerste en tweede part/block/deel gecounterbalanced hints aanbieden.
+    // ^FS: Gebruik nooit hints:
+    //useHints = 0; //(subjID + useBlock) % 2;
+    
+    itemlist.items = PG.tools.shuffleItems(itemlist.items); // shuffle item order 
+
+  console.log(itemlist.items[1]);
+
+  // Based on the SONA number being odd or even, we select either the SlimStampen algorithm or
+  // the flashcard algorithm to sequence the items
+  //if (subjID % 2 == 0) {
+  /*console.log("==> Spacing method");
+      PG.global.init(PG.irsSpacing, itemlist, useBlock, autoComp, levDist, 1953, 1, numMinutesPerSession, 0, 0, false, useHints);   */ 
+  //} else {
+  //  console.log("==> FlashCard method");
+   //   PG.global.init(PG.classicFlashcard, itemlist, useBlock, autoComp, levDist, 1953, 1, numMinutesPerSession, 0, 0, false, useHints);    
+  //} 
+});
+</script>
+</body>
+</html>
